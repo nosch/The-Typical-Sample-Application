@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Definition and configuration of the Silex application
  *
