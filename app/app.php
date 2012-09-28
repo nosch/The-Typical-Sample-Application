@@ -6,6 +6,7 @@
  */
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 // Instantiate Silex application
@@ -14,22 +15,31 @@ $app = new Application();
 // Set debug mode
 $app['debug'] = false;
 
-// Error route: NotFound error
-$app->error(function (NotFoundHttpException $e, $code) use ($app) {
-    if (true === $app['debug']) {
-        return;
-    }
-
-    return $app->json(array('Page not found.'), $code);
+// Defining routes
+$app->get('/', function() use ($app) {
+   return new Response('Main API route', 200);
 });
 
-// Error route: all other errors
-$app->error(function (\Exception $e, $code) use ($app) {
+$app->get('/error', function() use ($app) {
+   throw new Exception('', 503);
+});
+
+// Error handler: not-found exception
+$app->error(function (NotFoundHttpException $e) use ($app) {
     if (true === $app['debug']) {
         return;
     }
 
-    return $app->json(array($e->getMessage()), $code);
+    return new Response('', 404);
+});
+
+// Error handler: all other exceptions
+$app->error(function (\Exception $e) use ($app) {
+    if (true === $app['debug']) {
+        return;
+    }
+
+    return new Response('', $e->getCode() ?: 500);
 });
 
 // Return the Silex application
