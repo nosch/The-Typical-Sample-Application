@@ -12,7 +12,7 @@ Ext.define('Company.view.Viewport', {
     requires: [
         'Ext.layout.container.Border',
         'Company.view.ToolbarView',
-        'Employee.view.EmployeeView'
+        'Employee.view.EmployeeGridView'
     ],
 
     layout: 'border',
@@ -53,7 +53,7 @@ Ext.define('Company.view.Viewport', {
                 border: 1,
                 margins: '0 1 1 0',
                 items: [{
-                    xtype: 'employeeview',
+                    xtype: 'employeegridview',
                     border: 0
                 }]
             }, {

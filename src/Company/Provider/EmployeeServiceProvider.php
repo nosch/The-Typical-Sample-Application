@@ -61,10 +61,13 @@ class EmployeeServiceProvider implements ServiceProviderInterface
             ->from('company_employees', 'e')
             ->leftJoin('e', 'company_departments', 'd', 'e.department_id = d.id')
             ->setFirstResult(0)
-            ->setMaxResults(5)
+            ->setMaxResults(50)
             ->execute();
 
-        return $employees->fetchAll(\PDO::FETCH_ASSOC);
+        return array(
+            'success' => true,
+            'data' => $employees->fetchAll(\PDO::FETCH_ASSOC)
+        );
     }
 
     /**
@@ -79,7 +82,7 @@ class EmployeeServiceProvider implements ServiceProviderInterface
      */
     protected function _getOne($_id, $_db)
     {
-        $employees = $_db->createQueryBuilder()
+        $employee = $_db->createQueryBuilder()
             ->select('e.*', 'd.name as "department"')
             ->from('company_employees', 'e')
             ->leftJoin('e', 'company_departments', 'd', 'e.department_id = d.id')
@@ -89,6 +92,9 @@ class EmployeeServiceProvider implements ServiceProviderInterface
             ))
             ->execute();
 
-        return $employees->fetchAll(\PDO::FETCH_ASSOC);
+        return array(
+            'success' => true,
+            'data' => $employee->fetchAll(\PDO::FETCH_ASSOC)
+        );
     }
 }

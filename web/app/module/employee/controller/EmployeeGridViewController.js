@@ -1,12 +1,12 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
- * @class Employee.controller.EmployeeViewController
+ * @class Employee.controller.EmployeeGridViewController
  * @extends Deft.mvc.ViewController
  *
- * ViewController for the main view component of the employee module
+ * ViewController for the grid view component of the employee module
  */
 
-Ext.define('Employee.controller.EmployeeViewController', {
+Ext.define('Employee.controller.EmployeeGridViewController', {
     extend: 'Deft.mvc.ViewController',
 
     mixins: [
