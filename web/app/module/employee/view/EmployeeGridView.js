@@ -11,9 +11,11 @@ Ext.define('Employee.view.EmployeeGridView', {
     extend: 'Ext.grid.Panel',
 
     requires: [
+        'Ext.grid.plugin.RowEditing',
         'Ext.grid.column.Template',
         'Ext.grid.column.Date',
-        'Ext.grid.column.Boolean'
+        'Ext.grid.column.Boolean',
+        'Ext.form.field.Checkbox'
     ],
 
     mixins: [
@@ -51,6 +53,10 @@ Ext.define('Employee.view.EmployeeGridView', {
             xtype: 'templatecolumn',
             tpl: '{street}, {zip} {city}, {state}'
         }, {
+            text: 'Marital status',
+            dataIndex: 'maritalStatus',
+            flex: 0.4
+        }, {
             text: 'Hired',
             xtype: 'datecolumn',
             format: 'Y-m-d',
@@ -62,9 +68,20 @@ Ext.define('Employee.view.EmployeeGridView', {
             trueText: 'Yes',
             falseText: 'No',
             dataIndex: 'active',
-            flex: 0.2
+            flex: 0.2,
+            editor: {
+                xtype: 'checkbox',
+                allowBlank: false
+            }
         }]
     },
+
+    plugins: [{
+        ptype: 'rowediting',
+        pluginId: 'companyGridEditor',
+        clicksToEdit: 2,
+        autoCancel: false
+    }],
 
     initComponent: function() {
         var me = this;

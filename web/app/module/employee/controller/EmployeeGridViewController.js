@@ -21,6 +21,15 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
         viewTitle: null
     },
 
+    control: {
+        view: {
+            edit: function(editor, event, options) {
+                // @todo validate the record
+                console.info(event.record);
+            }
+        }
+    },
+
     init: function() {
         var me = this;
         var view = me.getView();

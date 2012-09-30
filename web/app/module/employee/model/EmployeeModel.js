@@ -11,8 +11,7 @@ Ext.define('Employee.model.EmployeeModel', {
 
     fields: [{
         name: 'id',
-        type: 'int',
-        persist: false
+        type: 'int'
     }, {
         name: 'departmentId',
         mapping: 'department_id',
@@ -71,6 +70,6 @@ Ext.define('Employee.model.EmployeeModel', {
     }, {
         field: 'maritalStatus',
         type: 'inclusion',
-        list: ['married', 'single', 'divorced', 'widowed']
+        list: ['Common-Law', 'Married', 'Single', 'Divorced']
     }]
 });

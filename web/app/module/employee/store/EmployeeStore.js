@@ -18,7 +18,7 @@ Ext.define('Employee.store.EmployeeStore', {
 
     autoLoad: true,
 
-    autoSync: false,
+    autoSync: true,
 
     pageSize: 20,
 
@@ -39,12 +39,11 @@ Ext.define('Employee.store.EmployeeStore', {
         },
         writer: {
             type: 'json',
-            encode: true,
-            writeAllFields: false,
+            root: 'data',
             nameProperty: 'mapping',
-            allowSingle: true,
-            batch: false,
-            root: 'data'
+            encode: true,
+            writeAllFields: true,
+            allowSingle: false
         },
         listeners: {
             exception: function(proxy, response, operation) {
