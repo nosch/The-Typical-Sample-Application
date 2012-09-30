@@ -9,6 +9,7 @@
 use Company\Controller\EmployeeControllerProvider;
 
 use Silex\Application;
+use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,12 @@ $app = new Application();
 
 // Set debug mode
 $app['debug'] = false;
+
+// Register Monolog logger
+$app->register(new MonologServiceProvider(), array(
+    'monolog.logfile' => __DIR__ . '/../log/application.log',
+    'monolog.name' => 'CompanyAPI'
+));
 
 // Register doctrine DBAL provider
 $app->register(new DoctrineServiceProvider(), array(
