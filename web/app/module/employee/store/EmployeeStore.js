@@ -41,8 +41,8 @@ Ext.define('Employee.store.EmployeeStore', {
             type: 'json',
             root: 'data',
             nameProperty: 'mapping',
-            encode: true,
-            writeAllFields: true,
+            encode: false,
+            writeAllFields: false,
             allowSingle: false
         },
         listeners: {

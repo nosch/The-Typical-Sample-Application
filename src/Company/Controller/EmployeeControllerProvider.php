@@ -27,14 +27,29 @@ class EmployeeControllerProvider implements ControllerProviderInterface
 
         $controllers = $_app['controllers_factory'];
 
-        // Route for a list of employees
-        $controllers->get('/', function() use ($_app) {
-            return $_app->json($_app['employeeService.getAll']);
+        // Route for CREATING one employee record
+        $controllers->post('/', function() use ($_app) {
+            return $_app->json($_app['employeeService.create']);
         });
 
-        // Route for a single employee
+        // Route for READING a list of employee records
+        $controllers->get('/', function() use ($_app) {
+            return $_app->json($_app['employeeService.read']);
+        });
+
+        // Route for READING one employee record
         $controllers->get('/{id}', function() use ($_app) {
-            return $_app->json($_app['employeeService.getOne']);
+            return $_app->json($_app['employeeService.readOne']);
+        });
+
+        // Route for UPDATING one employee record
+        $controllers->put('/{id}', function() use ($_app) {
+            return $_app->json($_app['employeeService.update']);
+        });
+
+        // Route for DELETING one employee record
+        $controllers->delete('/{id}', function() use ($_app) {
+            return $_app->json($_app['employeeService.delete']);
         });
 
         return $controllers;

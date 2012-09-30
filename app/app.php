@@ -13,6 +13,8 @@ use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 // Instantiate the silex application
@@ -38,28 +40,13 @@ $app->register(new DoctrineServiceProvider(), array(
     )
 ));
 
-// Define routes
-// Test index route
-$app->get('/index', function() use ($app) {
-    return new Response('Main API route', 200);
-});
+// Parse and decode request body, if content-type is application/json
+$app->before(function (Request $request) {
+    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+        $data = json_decode($request->getContent(), true);
 
-// Test exception route
-$app->get('/error', function() use ($app) {
-    throw new \Exception('', 503);
-});
-
-// Test post route
-$app->post('/post', function() use ($app) {
-    if (!$app['request']->get('param')) {
-        throw new \Exception('', 501);
+        $request->request->replace(is_array($data) ? $data : array());
     }
-
-    return $app->json(array(
-        'postData' => array(
-            'yourParam' => $app['request']->get('param')
-        )
-    ));
 });
 
 // Mount routes
