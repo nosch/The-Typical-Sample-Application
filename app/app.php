@@ -32,12 +32,27 @@ $app->register(new DoctrineServiceProvider(), array(
 ));
 
 // Define routes
-$app->get('/', function() use ($app) {
+// Test index route
+$app->get('/index', function() use ($app) {
    return new Response('Main API route', 200);
 });
 
+// Test exception route
 $app->get('/error', function() use ($app) {
-   throw new Exception('', 503);
+   throw new \Exception('', 503);
+});
+
+// Test post route
+$app->post('/post', function() use ($app) {
+    if (!$app['request']->get('param')) {
+        throw new \Exception('', 501);
+    }
+
+    return $app->json(array(
+        'postData' => array(
+            'yourParam' => $app['request']->get('param')
+        )
+    ));
 });
 
 // Mount routes
