@@ -41,12 +41,12 @@ $app->register(new DoctrineServiceProvider(), array(
 // Define routes
 // Test index route
 $app->get('/index', function() use ($app) {
-   return new Response('Main API route', 200);
+    return new Response('Main API route', 200);
 });
 
 // Test exception route
 $app->get('/error', function() use ($app) {
-   throw new \Exception('', 503);
+    throw new \Exception('', 503);
 });
 
 // Test post route
