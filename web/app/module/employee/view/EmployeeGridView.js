@@ -6,7 +6,6 @@
  * Grid view component of the employee module
  */
 
-
 Ext.define('Employee.view.EmployeeGridView', {
     extend: 'Ext.grid.Panel',
 
@@ -32,42 +31,42 @@ Ext.define('Employee.view.EmployeeGridView', {
     xtype: 'employeegridview',
 
     columns: {
-    defaults: {
-        flex: 0.5
-    },
-    items: [{
-        text: 'ID',
-        dataIndex: 'id',
-        flex: 0.1
-    }, {
-        text: 'Name',
-        xtype: 'templatecolumn',
-        tpl: '{lastName}, {firstName}'
-    }, {
-        text: 'DOB',
-        xtype: 'datecolumn',
-        format: 'M d, Y',
-        dataIndex: 'dob'
-    }, {
-        text: 'Department',
-        dataIndex: 'department'
-    }, {
-        text: 'Residence',
-        xtype: 'templatecolumn',
-        tpl: '{city}, {state}'
-    }, {
-        text: 'Hired',
-        xtype: 'datecolumn',
-        format: 'M d, Y',
-        dataIndex: 'dateHired'
-    }, {
-        text: 'Active',
-        xtype: 'booleancolumn',
-        trueText: 'Yes',
-        falseText: 'No',
-        dataIndex: 'active',
-        flex: 0.1
-    }]
+        defaults: {
+            flex: 0.5
+        },
+        items: [{
+            text: 'ID',
+            dataIndex: 'id',
+            flex: 0.1
+        }, {
+            text: 'Name',
+            xtype: 'templatecolumn',
+            tpl: '{lastName}, {firstName}'
+        }, {
+            text: 'DOB',
+            xtype: 'datecolumn',
+            format: 'M d, Y',
+            dataIndex: 'dob'
+        }, {
+            text: 'Department',
+            dataIndex: 'department'
+        }, {
+            text: 'Residence',
+            xtype: 'templatecolumn',
+            tpl: '{city}, {state}'
+        }, {
+            text: 'Hired',
+            xtype: 'datecolumn',
+            format: 'M d, Y',
+            dataIndex: 'dateHired'
+        }, {
+            text: 'Active',
+            xtype: 'booleancolumn',
+            trueText: 'Yes',
+            falseText: 'No',
+            dataIndex: 'active',
+            flex: 0.1
+        }]
     },
 
     initComponent: function() {
