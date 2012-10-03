@@ -32,56 +32,43 @@ Ext.define('Employee.view.EmployeeGridView', {
     xtype: 'employeegridview',
 
     columns: {
-        defaults: {
-            flex: 1
-        },
-        items: [{
-            text: 'ID',
-            dataIndex: 'id',
-            flex: 0.2
-        }, {
-            text: 'Name',
-            xtype: 'templatecolumn',
-            tpl: '{lastName}, {firstName}',
-            flex: 0.6
-        }, {
-            text: 'Department',
-            dataIndex: 'department',
-            flex: 0.4
-        }, {
-            text: 'Address',
-            xtype: 'templatecolumn',
-            tpl: '{street}, {zip} {city}, {state}'
-        }, {
-            text: 'Marital status',
-            dataIndex: 'maritalStatus',
-            flex: 0.4
-        }, {
-            text: 'Hired',
-            xtype: 'datecolumn',
-            format: 'Y-m-d',
-            dataIndex: 'dateHired',
-            flex: 0.4
-        }, {
-            text: 'Active',
-            xtype: 'booleancolumn',
-            trueText: 'Yes',
-            falseText: 'No',
-            dataIndex: 'active',
-            flex: 0.2,
-            editor: {
-                xtype: 'checkbox',
-                allowBlank: false
-            }
-        }]
+    defaults: {
+        flex: 0.5
     },
-
-    plugins: [{
-        ptype: 'rowediting',
-        pluginId: 'companyGridEditor',
-        clicksToEdit: 2,
-        autoCancel: false
-    }],
+    items: [{
+        text: 'ID',
+        dataIndex: 'id',
+        flex: 0.1
+    }, {
+        text: 'Name',
+        xtype: 'templatecolumn',
+        tpl: '{lastName}, {firstName}'
+    }, {
+        text: 'DOB',
+        xtype: 'datecolumn',
+        format: 'M d, Y',
+        dataIndex: 'dob'
+    }, {
+        text: 'Department',
+        dataIndex: 'department'
+    }, {
+        text: 'Residence',
+        xtype: 'templatecolumn',
+        tpl: '{city}, {state}'
+    }, {
+        text: 'Hired',
+        xtype: 'datecolumn',
+        format: 'M d, Y',
+        dataIndex: 'dateHired'
+    }, {
+        text: 'Active',
+        xtype: 'booleancolumn',
+        trueText: 'Yes',
+        falseText: 'No',
+        dataIndex: 'active',
+        flex: 0.1
+    }]
+    },
 
     initComponent: function() {
         var me = this;

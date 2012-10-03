@@ -20,6 +20,9 @@ Ext.define('Employee.model.EmployeeModel', {
         name: 'firstName',
         mapping: 'firstname'
     }, {
+        name: 'middleName',
+        mapping: 'middle'
+    }, {
         name: 'lastName',
         mapping: 'lastname'
     }, {
