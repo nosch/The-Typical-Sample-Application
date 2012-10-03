@@ -39,8 +39,6 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
         var viewTitle = me.getViewTitle();
 
         view.setTitle(viewTitle);
-
-        return me.callParent(arguments);
     },
 
     renderRowContextMenu: function(view, record, item, index, e) {
