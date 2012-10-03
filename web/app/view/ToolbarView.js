@@ -14,14 +14,23 @@ Ext.define( 'Company.view.ToolbarView', {
         'Ext.toolbar.TextItem'
     ],
 
+    mixins: [
+        'Deft.mixin.Injectable',
+        'Deft.mixin.Controllable'
+    ],
+
+    inject: {
+
+    },
+
+    controller: 'Company.controller.ToolbarViewController',
+
     xtype: 'toolbarview',
 
     initComponent: function() {
         var me = this;
 
         Ext.apply(me, {
-            itemId: 'mainToolbar',
-            dock: 'top',
             items: [{
                 xtype: 'button',
                 itemId: 'dashboardButton',

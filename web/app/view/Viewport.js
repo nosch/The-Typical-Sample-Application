@@ -12,8 +12,20 @@ Ext.define('Company.view.Viewport', {
     requires: [
         'Ext.layout.container.Border',
         'Company.view.ToolbarView',
+        'Company.view.StatusbarView',
         'Employee.view.EmployeeGridView'
     ],
+
+    mixins: [
+        'Deft.mixin.Injectable',
+        'Deft.mixin.Controllable'
+    ],
+
+    inject: {
+
+    },
+
+    controller: 'Company.controller.ViewportViewController',
 
     layout: 'border',
 
@@ -27,59 +39,50 @@ Ext.define('Company.view.Viewport', {
         Ext.apply(me, {
             items: [{
                 xtype: 'panel',
-                region: 'north',
                 itemId: 'northPanel',
+                region: 'north',
                 border: 1,
                 margins: 1,
                 height: 87,
                 html: '<h1><img src=\'resource/image/company-group-logo.jpg\' /></h1>',
                 dockedItems: [{
-                    xtype: 'toolbarview'
+                    xtype: 'toolbarview',
+                    itemId: 'mainToolbar',
+                    dock: 'top'
                 }]
             }, {
                 xtype: 'panel',
-                region: 'west',
                 itemId: 'westPanel',
+                html: '<p style="padding:10px;">I am a useless view component...</p>',
+                region: 'west',
                 width: 200,
                 // layout: 'fit', // bug, not possible with collapsible: true
                 collapsible: true,
+                collapsed: true,
                 border: 1,
                 margins: '0 1 1 1'
             }, {
                 xtype: 'panel',
-                region: 'center',
                 itemId: 'centerPanel',
+                region: 'center',
                 layout: 'fit',
                 border: 1,
                 margins: '0 1 1 0',
                 items: [{
                     xtype: 'employeegridview',
+                    itemId: 'employeeGrid',
                     border: 0
                 }]
             }, {
                 xtype: 'panel',
-                region: 'south',
                 itemId: 'southPanel',
+                region: 'south',
                 border: 1,
                 margins: '0 1 1 1',
                 dockedItems: [{
-                    xtype: 'toolbar',
+                    xtype: 'statusbarview',
                     itemId: 'statusBar',
-                    dock: 'top',
-                    items: [{
-                        xtype: 'tbtext',
-                        text: 'Loading ...'
-                    }, {
-                        xtype: 'tbfill'
-                    }, {
-                        xtype: 'button',
-                        text: 'Version'
-                    }, {
-                        xtype: 'tbseparator'
-                    }, {
-                        xtype: 'tbtext',
-                        text: '© 2012 Company Group'
-                    }]
+                    dock: 'top'
                 }]
             }]
         });
