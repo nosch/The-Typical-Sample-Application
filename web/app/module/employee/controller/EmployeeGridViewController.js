@@ -14,24 +14,21 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
     ],
 
     inject: {
+        messageBus: 'messageBus',
         viewTitle: 'employeeViewTitle'
     },
 
     config: {
+        messageBus: null,
         viewTitle: null
     },
 
     control: {
         view: {
-            edit: function(editor, event, options) {
-                // @todo validate the record
-                console.info(event.record);
-            },
+            select: 'onSelectEmployee',
             itemcontextmenu: 'renderRowContextMenu'
         }
     },
-
-
 
     init: function() {
         var me = this;
@@ -39,6 +36,16 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
         var viewTitle = me.getViewTitle();
 
         view.setTitle(viewTitle);
+    },
+
+    onSelectEmployee: function(selectionModel, record, index, options) {
+        var me = this;
+
+        me.getMessageBus().fireEvent(
+            'statusbar.update',
+            Ext.create('Ext.XTemplate', 'Selection: Employee #{employeeId}'),
+            record
+        );
     },
 
     renderRowContextMenu: function(view, record, item, index, e) {

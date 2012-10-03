@@ -14,20 +14,33 @@ Ext.define('Company.controller.StatusbarViewController', {
     ],
 
     inject: {
-
+        messageBus: 'messageBus'
     },
 
     config: {
-
+         messageBus: null
     },
 
     control: {
-
+        statusField: true
     },
 
     init: function() {
         var me = this;
 
-        console.debug('INIT StatusbarViewController');
+        me.getMessageBus().on(
+            'statusbar.update',
+            me.updateStatusMessage,
+            me
+        );
+    },
+
+    updateStatusMessage: function(template, record) {
+        var me = this;
+        var statusField = me.getStatusField();
+
+        statusField.setText(template.apply({
+            employeeId: record.data.id
+        }));
     }
 });
