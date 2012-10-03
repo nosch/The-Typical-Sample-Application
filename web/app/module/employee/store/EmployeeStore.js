@@ -58,13 +58,11 @@ Ext.define('Employee.store.EmployeeStore', {
                     buttons: Ext.Msg.OK
                 });
             }
-        }
-        /*
+        },
         buildUrl: function(request) {
             var url = Ext.data.proxy.Rest.prototype.buildUrl.apply(this, arguments);
             // Adds a slash before query string
             return url.replace(/(\d+)(\?)/, "$1/$2");
         }
-        */
     }
 });

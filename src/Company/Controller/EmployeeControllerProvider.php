@@ -38,17 +38,17 @@ class EmployeeControllerProvider implements ControllerProviderInterface
         });
 
         // Route for READING one employee record
-        $controllers->get('/{id}', function() use ($_app) {
+        $controllers->get('/{id}/', function() use ($_app) {
             return $_app->json($_app['employeeService.readOne']);
         });
 
         // Route for UPDATING one employee record
-        $controllers->put('/{id}', function() use ($_app) {
+        $controllers->put('/{id}/', function() use ($_app) {
             return $_app->json($_app['employeeService.update']);
         });
 
         // Route for DELETING one employee record
-        $controllers->delete('/{id}', function() use ($_app) {
+        $controllers->delete('/{id}/', function() use ($_app) {
             return $_app->json($_app['employeeService.delete']);
         });
 
