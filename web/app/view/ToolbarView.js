@@ -15,13 +15,8 @@ Ext.define( 'Company.view.ToolbarView', {
     ],
 
     mixins: [
-        'Deft.mixin.Injectable',
         'Deft.mixin.Controllable'
     ],
-
-    inject: {
-
-    },
 
     controller: 'Company.controller.ToolbarViewController',
 

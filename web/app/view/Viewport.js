@@ -17,13 +17,8 @@ Ext.define('Company.view.Viewport', {
     ],
 
     mixins: [
-        'Deft.mixin.Injectable',
         'Deft.mixin.Controllable'
     ],
-
-    inject: {
-
-    },
 
     controller: 'Company.controller.ViewportViewController',
 

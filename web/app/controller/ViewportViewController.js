@@ -13,21 +13,7 @@ Ext.define('Company.controller.ViewportViewController', {
         'Deft.mixin.Injectable'
     ],
 
-    inject: {
-
-    },
-
-    config: {
-
-    },
-
-    control: {
-
-    },
-
     init: function() {
         var me = this;
-
-        console.debug('INIT ViewportViewController');
     }
 });

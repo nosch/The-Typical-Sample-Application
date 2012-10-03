@@ -9,18 +9,9 @@
 Ext.define( 'Company.view.StatusbarView', {
     extend: 'Ext.toolbar.Toolbar',
 
-    requires: [
-
-    ],
-
     mixins: [
-        'Deft.mixin.Injectable',
         'Deft.mixin.Controllable'
     ],
-
-    inject: {
-
-    },
 
     controller: 'Company.controller.StatusbarViewController',
 
