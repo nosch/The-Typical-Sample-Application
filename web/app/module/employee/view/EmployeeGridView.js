@@ -30,6 +30,8 @@ Ext.define('Employee.view.EmployeeGridView', {
 
     xtype: 'employeegridview',
 
+    title: 'Employees',
+
     columns: {
         defaults: {
             flex: 0.5
@@ -67,15 +69,5 @@ Ext.define('Employee.view.EmployeeGridView', {
             dataIndex: 'active',
             flex: 0.1
         }]
-    },
-
-    initComponent: function() {
-        var me = this;
-
-        Ext.apply(me, {
-            html: '<p style="padding: 4px;">Employee data ...</p>'
-        });
-
-        me.callParent(arguments);
     }
 });

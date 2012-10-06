@@ -17,18 +17,16 @@ Ext.define('Company.controller.StatusbarViewController', {
         messageBus: 'messageBus'
     },
 
-    config: {
-         messageBus: null
-    },
-
     control: {
         statusField: true
     },
 
+    messageBus: null,
+
     init: function() {
         var me = this;
 
-        me.getMessageBus().on(
+        me.messageBus.on(
             'statusbar.update',
             me.updateStatusMessage,
             me

@@ -14,13 +14,7 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
     ],
 
     inject: {
-        messageBus: 'messageBus',
-        viewTitle: 'employeeViewTitle'
-    },
-
-    config: {
-        messageBus: null,
-        viewTitle: null
+        messageBus: 'messageBus'
     },
 
     control: {
@@ -30,18 +24,16 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
         }
     },
 
+    messageBus: null,
+
     init: function() {
         var me = this;
-        var view = me.getView();
-        var viewTitle = me.getViewTitle();
-
-        view.setTitle(viewTitle);
     },
 
     onSelectEmployee: function(selectionModel, record, index, options) {
         var me = this;
 
-        me.getMessageBus().fireEvent(
+        me.messageBus.fireEvent(
             'statusbar.update',
             Ext.create('Ext.XTemplate', 'Selection: Employee #{employeeId}'),
             record
@@ -49,6 +41,8 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
     },
 
     renderRowContextMenu: function(view, record, item, index, e) {
+        var me = this;
+
         e.stopEvent();
 
         if (!view.rowContextMenu) {
@@ -66,7 +60,7 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
                 }, {
                     text : 'Delete record...',
                     handler: function() {
-                        var store = view.getStore();
+                        var store = me.getEmployeeStore();
                         var selected = view.selModel.getSelection();
 
                         Ext.MessageBox.confirm(
