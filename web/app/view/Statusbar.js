@@ -24,7 +24,7 @@ Ext.define( 'Company.view.Statusbar', {
             items: [{
                 xtype: 'tbtext',
                 itemId: 'statusField',
-                text: 'Loading ...'
+                text: 'Status: Loading ...'
             }, {
                 xtype: 'tbfill'
             }, {
