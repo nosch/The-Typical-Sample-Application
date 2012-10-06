@@ -14,7 +14,8 @@ Ext.define('Employee.view.Grid', {
         'Ext.grid.column.Template',
         'Ext.grid.column.Date',
         'Ext.grid.column.Boolean',
-        'Ext.form.field.Checkbox'
+        'Ext.form.field.Checkbox',
+        'Employee.view.ContextMenu'
     ],
 
     mixins: [
@@ -24,6 +25,10 @@ Ext.define('Employee.view.Grid', {
 
     inject: {
         store: 'employeeStore'
+    },
+
+    config: {
+        contextMenu: null
     },
 
     controller: 'Employee.controller.GridViewController',
@@ -69,5 +74,13 @@ Ext.define('Employee.view.Grid', {
             dataIndex: 'active',
             flex: 0.1
         }]
+    },
+
+    initComponent: function() {
+        var me = this;
+
+        me.setContextMenu(Ext.create('Employee.view.ContextMenu'));
+
+        me.callParent(arguments);
     }
 });

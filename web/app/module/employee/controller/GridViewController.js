@@ -19,13 +19,13 @@ Ext.define('Employee.controller.GridViewController', {
     },
 
     config: {
+        contextMenu: null,
         employeeStore: null
     },
 
     control: {
         view: {
-            select: 'onSelectEmployee',
-            itemcontextmenu: 'renderRowContextMenu'
+            itemcontextmenu: 'showContextMenu'
         }
     },
 
@@ -33,56 +33,49 @@ Ext.define('Employee.controller.GridViewController', {
 
     init: function() {
         var me = this;
+
+        me.messageBus.on({
+            employeeContextmenuInsertclick: {
+                fn: me.insertItem,
+                scope: me
+            },
+            employeeContextmenuDeleteclick: {
+                fn: me.deleteItem,
+                scope: me
+            }
+        });
     },
 
-    onSelectEmployee: function(selectionModel, record, index, options) {
+    showContextMenu: function(grid, record, item, index, event) {
+        var me = this;
+        var view = me.getView();
+
+        event.stopEvent();
+
+        view.getContextMenu().setRecord(record);
+        view.getContextMenu().showAt(event.getXY());
+    },
+
+    deleteItem: function(record) {
         var me = this;
 
+        me.getEmployeeStore().remove(record);
+
         me.messageBus.fireEvent(
-            'company.statusbar.update',
-            Ext.create('Ext.XTemplate', 'Selection: Employee #{employeeId}'),
-            record
+            'companyStatusbarUpdate',
+            Ext.String.format(
+                'Status: Employee #{0} deleted',
+                record.data.id
+            )
         );
     },
 
-    renderRowContextMenu: function(view, record, item, index, e) {
+    insertItem: function() {
         var me = this;
 
-        e.stopEvent();
-
-        if (!view.rowContextMenu) {
-            view.rowContextMenu = Ext.create('Ext.menu.Menu', {
-                items : [{
-                    text: 'Insert record',
-                    handler: function() {
-                        Ext.MessageBox.show({
-                            title: 'Info',
-                            msg: 'Not implemented yet.',
-                            icon: Ext.MessageBox.INFO,
-                            buttons: Ext.Msg.OK
-                        });
-                    }
-                }, {
-                    text : 'Delete record...',
-                    handler: function() {
-                        var store = me.getEmployeeStore();
-                        var selected = view.selModel.getSelection();
-
-                        Ext.MessageBox.confirm(
-                            'Confirm delete',
-                            'Do you really want to remove the selected record?',
-                            function(button) {
-                                if (button == 'yes') {
-                                    store.remove(selected);
-                                }
-                            }
-                        );
-                    }
-                }]
-            });
-        }
-
-        view.selModel.select(record);
-        view.rowContextMenu.showAt(e.getXY());
+        me.messageBus.fireEvent(
+            'companyStatusbarUpdate',
+            'Status: New employee added'
+        );
     }
 });
