@@ -25,6 +25,9 @@ Ext.define('Employee.view.ContextMenu', {
         text: 'Insert record...',
         itemId: 'insertItem'
     }, {
+        text: 'Edit record...',
+        itemId: 'editItem'
+    }, {
         text : 'Delete record...',
         itemId: 'deleteItem'
     }]

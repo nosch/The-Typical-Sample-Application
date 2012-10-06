@@ -20,6 +20,7 @@ Ext.define('Company.service.MessageBus', {
         me.addEvents({
             companyStatusbarUpdate: true,
             employeeContextmenuInsertclick: true,
+            employeeContextmenuEditclick: true,
             employeeContextmenuDeleteclick: true
         });
 

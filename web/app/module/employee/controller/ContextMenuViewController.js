@@ -21,6 +21,9 @@ Ext.define('Employee.controller.ContextMenuViewController', {
         insertItem: {
             click: 'onInsertClick'
         },
+        editItem: {
+            click: 'onEditClick'
+        },
         deleteItem: {
             click: 'onDeleteClick'
         }
@@ -36,13 +39,31 @@ Ext.define('Employee.controller.ContextMenuViewController', {
         );
     },
 
-    onDeleteClick: function(menuItem) {
+    onEditClick: function(menuItem) {
         var me = this;
         var record = me.getView().getRecord();
 
         me.messageBus.fireEvent(
-            'employeeContextmenuDeleteclick',
+            'employeeContextmenuEditclick',
             record
+        );
+    },
+
+    onDeleteClick: function(menuItem) {
+        var me = this;
+        var record = me.getView().getRecord();
+
+        Ext.MessageBox.confirm(
+            'Confirm delete',
+            'Do you really want to remove the selected record?',
+            function(button) {
+                if (button == 'yes') {
+                    me.messageBus.fireEvent(
+                        'employeeContextmenuDeleteclick',
+                        record
+                    );
+                }
+            }
         );
     }
 });

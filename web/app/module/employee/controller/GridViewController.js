@@ -39,6 +39,10 @@ Ext.define('Employee.controller.GridViewController', {
                 fn: me.insertItem,
                 scope: me
             },
+            employeeContextmenuEditclick: {
+                fn: me.editItem,
+                scope: me
+            },
             employeeContextmenuDeleteclick: {
                 fn: me.deleteItem,
                 scope: me
@@ -56,6 +60,27 @@ Ext.define('Employee.controller.GridViewController', {
         view.getContextMenu().showAt(event.getXY());
     },
 
+    insertItem: function() {
+        var me = this;
+
+        me.messageBus.fireEvent(
+            'companyStatusbarUpdate',
+            'Action: New employee added'
+        );
+    },
+
+    editItem: function(record) {
+        var me = this;
+
+        me.messageBus.fireEvent(
+            'companyStatusbarUpdate',
+            Ext.String.format(
+                'Action: Employee #{0} edited',
+                record.data.id
+            )
+        );
+    },
+
     deleteItem: function(record) {
         var me = this;
 
@@ -64,18 +89,9 @@ Ext.define('Employee.controller.GridViewController', {
         me.messageBus.fireEvent(
             'companyStatusbarUpdate',
             Ext.String.format(
-                'Status: Employee #{0} deleted',
+                'Action: Employee #{0} deleted',
                 record.data.id
             )
-        );
-    },
-
-    insertItem: function() {
-        var me = this;
-
-        me.messageBus.fireEvent(
-            'companyStatusbarUpdate',
-            'Status: New employee added'
         );
     }
 });
