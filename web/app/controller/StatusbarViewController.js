@@ -26,13 +26,22 @@ Ext.define('Company.controller.StatusbarViewController', {
     init: function() {
         var me = this;
 
-        me.messageBus.on(
-            'company.statusbar.update',
-            me.updateStatusMessage,
-            me
-        );
+        me.messageBus.on({
+            companyStatusbarUpdate: {
+                fn: me.updateStatusMessage,
+                scope: me
+            }
+        });
     },
 
+    updateStatusMessage: function(message) {
+        var me = this;
+        var statusField = me.getStatusField();
+
+        statusField.setText(message);
+    }
+
+    /* Update status message with data
     updateStatusMessage: function(template, record) {
         var me = this;
         var statusField = me.getStatusField();
@@ -41,4 +50,8 @@ Ext.define('Company.controller.StatusbarViewController', {
             employeeId: record.data.id
         }));
     }
+
+    First param template = Ext.create('Ext.XTemplate', 'Status: Employee #{employeeId} deleted')
+    Second param record = selected record from grid
+    */
 });

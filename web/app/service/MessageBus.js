@@ -17,9 +17,11 @@ Ext.define('Company.service.MessageBus', {
 
         me.mixins.observable.constructor.call(me, config);
 
-        me.addEvents(
-            'company.statusbar.update'
-        );
+        me.addEvents({
+            companyStatusbarUpdate: true,
+            employeeContextmenuInsertclick: true,
+            employeeContextmenuDeleteclick: true
+        });
 
         me.callParent(arguments);
     }
