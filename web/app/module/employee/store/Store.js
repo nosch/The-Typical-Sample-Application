@@ -1,12 +1,12 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
- * @class Employee.store.EmployeeStore
+ * @class Employee.store.Store
  * @extends Ext.data.Store
  *
  * Store of the employee module
  */
 
-Ext.define('Employee.store.EmployeeStore', {
+Ext.define('Employee.store.Store', {
     extend: 'Ext.data.Store',
 
     requires: [
@@ -14,7 +14,7 @@ Ext.define('Employee.store.EmployeeStore', {
         'Ext.window.MessageBox'
     ],
 
-    model: 'Employee.model.EmployeeModel',
+    model: 'Employee.model.Model',
 
     autoLoad: true,
 

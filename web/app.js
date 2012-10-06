@@ -27,7 +27,7 @@ Ext.application({
 
         Deft.Injector.configure({
             messageBus: 'Company.service.MessageBus',
-            employeeStore: 'Employee.store.EmployeeStore'
+            employeeStore: 'Employee.store.Store'
         });
     }
 });

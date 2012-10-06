@@ -1,12 +1,12 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
- * @class Employee.controller.EmployeeGridViewController
+ * @class Employee.controller.GridViewController
  * @extends Deft.mvc.ViewController
  *
  * ViewController for the grid view component of the employee module
  */
 
-Ext.define('Employee.controller.EmployeeGridViewController', {
+Ext.define('Employee.controller.GridViewController', {
     extend: 'Deft.mvc.ViewController',
 
     mixins: [
@@ -14,7 +14,12 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
     ],
 
     inject: {
-        messageBus: 'messageBus'
+        messageBus: 'messageBus',
+        employeeStore: 'employeeStore'
+    },
+
+    config: {
+        employeeStore: null
     },
 
     control: {
@@ -34,7 +39,7 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
         var me = this;
 
         me.messageBus.fireEvent(
-            'statusbar.update',
+            'company.statusbar.update',
             Ext.create('Ext.XTemplate', 'Selection: Employee #{employeeId}'),
             record
         );
@@ -68,7 +73,6 @@ Ext.define('Employee.controller.EmployeeGridViewController', {
                             'Do you really want to remove the selected record?',
                             function(button) {
                                 if (button == 'yes') {
-                                    console.debug(selected);
                                     store.remove(selected);
                                 }
                             }

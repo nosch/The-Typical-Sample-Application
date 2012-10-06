@@ -11,9 +11,9 @@ Ext.define('Company.view.Viewport', {
 
     requires: [
         'Ext.layout.container.Border',
-        'Company.view.ToolbarView',
-        'Company.view.StatusbarView',
-        'Employee.view.EmployeeGridView'
+        'Company.view.Toolbar',
+        'Company.view.Statusbar',
+        'Employee.view.Grid'
     ],
 
     mixins: [
@@ -41,7 +41,7 @@ Ext.define('Company.view.Viewport', {
                 height: 87,
                 html: '<h1><img src=\'resource/image/company-group-logo.jpg\' /></h1>',
                 dockedItems: [{
-                    xtype: 'toolbarview',
+                    xtype: 'company.toolbar',
                     itemId: 'mainToolbar',
                     dock: 'top'
                 }]
@@ -64,7 +64,7 @@ Ext.define('Company.view.Viewport', {
                 border: 1,
                 margins: '0 1 1 0',
                 items: [{
-                    xtype: 'employeegridview',
+                    xtype: 'employee.grid',
                     itemId: 'employeeGrid',
                     border: 0
                 }]
@@ -75,7 +75,7 @@ Ext.define('Company.view.Viewport', {
                 border: 1,
                 margins: '0 1 1 1',
                 dockedItems: [{
-                    xtype: 'statusbarview',
+                    xtype: 'company.statusbar',
                     itemId: 'statusBar',
                     dock: 'top'
                 }]

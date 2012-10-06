@@ -1,12 +1,12 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
- * @class Employee.model.EmployeeModel
+ * @class Employee.model.Model
  * @extends Ext.data.Model
  *
  * Model of the employee module
  */
 
-Ext.define('Employee.model.EmployeeModel', {
+Ext.define('Employee.model.Model', {
     extend: 'Ext.data.Model',
 
     fields: [{

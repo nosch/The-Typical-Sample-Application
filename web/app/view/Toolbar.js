@@ -1,12 +1,12 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
- * @class Company.view.ToolbarView
+ * @class Company.view.Toolbar
  * @extends Ext.toolbar.Toolbar
  *
  * View component for the main toolbar of default module
  */
 
-Ext.define( 'Company.view.ToolbarView', {
+Ext.define( 'Company.view.Toolbar', {
     extend: 'Ext.toolbar.Toolbar',
 
     requires: [
@@ -20,7 +20,7 @@ Ext.define( 'Company.view.ToolbarView', {
 
     controller: 'Company.controller.ToolbarViewController',
 
-    xtype: 'toolbarview',
+    xtype: 'company.toolbar',
 
     initComponent: function() {
         var me = this;

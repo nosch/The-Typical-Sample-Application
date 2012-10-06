@@ -18,7 +18,7 @@ Ext.define('Company.service.MessageBus', {
         me.mixins.observable.constructor.call(me, config);
 
         me.addEvents(
-            'statusbar.update'
+            'company.statusbar.update'
         );
 
         me.callParent(arguments);

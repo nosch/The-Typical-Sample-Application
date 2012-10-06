@@ -27,7 +27,7 @@ Ext.define('Company.controller.StatusbarViewController', {
         var me = this;
 
         me.messageBus.on(
-            'statusbar.update',
+            'company.statusbar.update',
             me.updateStatusMessage,
             me
         );

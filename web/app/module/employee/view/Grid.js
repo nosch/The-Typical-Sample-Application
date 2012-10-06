@@ -1,12 +1,12 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
- * @class Employee.view.EmployeeGridView
+ * @class Employee.view.Grid
  * @extends Ext.grid.Panel
  *
  * Grid view component of the employee module
  */
 
-Ext.define('Employee.view.EmployeeGridView', {
+Ext.define('Employee.view.Grid', {
     extend: 'Ext.grid.Panel',
 
     requires: [
@@ -26,9 +26,9 @@ Ext.define('Employee.view.EmployeeGridView', {
         store: 'employeeStore'
     },
 
-    controller: 'Employee.controller.EmployeeGridViewController',
+    controller: 'Employee.controller.GridViewController',
 
-    xtype: 'employeegridview',
+    xtype: 'employee.grid',
 
     title: 'Employees',
 

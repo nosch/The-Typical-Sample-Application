@@ -1,12 +1,12 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
- * @class Company.view.StatusbarView
+ * @class Company.view.Statusbar
  * @extends Ext.toolbar.Toolbar
  *
  * View component for the main statusbar of the default module
  */
 
-Ext.define( 'Company.view.StatusbarView', {
+Ext.define( 'Company.view.Statusbar', {
     extend: 'Ext.toolbar.Toolbar',
 
     mixins: [
@@ -15,7 +15,7 @@ Ext.define( 'Company.view.StatusbarView', {
 
     controller: 'Company.controller.StatusbarViewController',
 
-    xtype: 'statusbarview',
+    xtype: 'company.statusbar',
 
     initComponent: function() {
         var me = this;
