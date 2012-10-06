@@ -27,10 +27,7 @@ Ext.application({
 
         Deft.Injector.configure({
             messageBus: 'Company.service.MessageBus',
-            employeeStore: 'Employee.store.EmployeeStore',
-            employeeViewTitle: {
-                value: 'Employees'
-            }
+            employeeStore: 'Employee.store.EmployeeStore'
         });
     }
 });
