@@ -6,7 +6,8 @@
 
 Ext.Loader.setPath({
     'Deft': './lib/DeftJs/src/js/Deft',
-    'Employee': './app/module/employee'
+    'Employee': './app/module/employee',
+    'Department': './app/module/department'
 });
 
 Ext.Loader.require([
@@ -26,7 +27,8 @@ Ext.application({
         var me = this;
 
         Deft.Injector.configure({
-            employeeStore: 'Employee.store.Store'
+            employeeStore: 'Employee.store.Store',
+            departmentStore: 'Department.store.Store'
         });
     }
 });
