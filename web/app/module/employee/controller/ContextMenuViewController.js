@@ -9,13 +9,13 @@
 Ext.define('Employee.controller.ContextMenuViewController', {
     extend: 'Deft.mvc.ViewController',
 
+    requires: [
+        'Employee.service.MessageBus'
+    ],
+
     mixins: [
         'Deft.mixin.Injectable'
     ],
-
-    inject: {
-        messageBus: 'messageBus'
-    },
 
     control: {
         insertItem: {
@@ -31,37 +31,33 @@ Ext.define('Employee.controller.ContextMenuViewController', {
 
     messageBus: null,
 
+    init: function() {
+        var me = this;
+
+        me.messageBus = Employee.service.MessageBus;
+    },
+
     onInsertClick: function(menuItem) {
         var me = this;
 
-        me.messageBus.fireEvent(
-            'employeeContextmenuInsertclick'
-        );
+        me.messageBus.fireEvent('contextmenuInsertclick');
     },
 
     onEditClick: function(menuItem) {
         var me = this;
-        var record = me.getView().getRecord();
 
-        me.messageBus.fireEvent(
-            'employeeContextmenuEditclick',
-            record
-        );
+        me.messageBus.fireEvent('contextmenuEditclick');
     },
 
     onDeleteClick: function(menuItem) {
         var me = this;
-        var record = me.getView().getRecord();
 
         Ext.MessageBox.confirm(
             'Confirm delete',
             'Do you really want to remove the selected record?',
             function(button) {
                 if (button == 'yes') {
-                    me.messageBus.fireEvent(
-                        'employeeContextmenuDeleteclick',
-                        record
-                    );
+                    me.messageBus.fireEvent('contextmenuDeleteclick');
                 }
             }
         );

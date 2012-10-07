@@ -13,10 +13,6 @@ Ext.define('Employee.view.ContextMenu', {
         'Deft.mixin.Controllable'
     ],
 
-    config: {
-        record: null
-    },
-
     controller: 'Employee.controller.ContextMenuViewController',
 
     xtype: 'employee.contextmenu',

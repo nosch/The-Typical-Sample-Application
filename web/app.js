@@ -26,7 +26,6 @@ Ext.application({
         var me = this;
 
         Deft.Injector.configure({
-            messageBus: 'Company.service.MessageBus',
             employeeStore: 'Employee.store.Store'
         });
     }

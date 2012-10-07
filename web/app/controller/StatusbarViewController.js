@@ -9,13 +9,13 @@
 Ext.define('Company.controller.StatusbarViewController', {
     extend: 'Deft.mvc.ViewController',
 
+    requires: [
+        'Company.service.MessageBus'
+    ],
+
     mixins: [
         'Deft.mixin.Injectable'
     ],
-
-    inject: {
-        messageBus: 'messageBus'
-    },
 
     control: {
         statusField: true
@@ -26,6 +26,8 @@ Ext.define('Company.controller.StatusbarViewController', {
     init: function() {
         var me = this;
 
+        me.messageBus = Company.service.MessageBus;
+
         me.messageBus.on({
             companyStatusbarUpdate: {
                 fn: me.updateStatusMessage,
@@ -34,24 +36,24 @@ Ext.define('Company.controller.StatusbarViewController', {
         });
     },
 
-    updateStatusMessage: function(message) {
+    updateStatusMessage: function(args) {
         var me = this;
         var statusField = me.getStatusField();
 
-        statusField.setText(message);
+        statusField.setText(args.message);
     }
 
-    /* Update status message with data
-    updateStatusMessage: function(template, record) {
+    /* Update status message with record.data
+    updateStatusMessage: function(args) {
         var me = this;
         var statusField = me.getStatusField();
 
-        statusField.setText(template.apply({
-            employeeId: record.data.id
+        statusField.setText(args.template.apply({
+            employeeId: args.record.data.id
         }));
     }
 
-    First param template = Ext.create('Ext.XTemplate', 'Status: Employee #{employeeId} deleted')
-    Second param record = selected record from grid
+    args.template = Ext.create('Ext.XTemplate', 'Status: Employee #{employeeId} deleted')
+    args.record = selected record from grid
     */
 });

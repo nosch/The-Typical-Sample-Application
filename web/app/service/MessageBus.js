@@ -6,24 +6,24 @@
  */
 
 Ext.define('Company.service.MessageBus', {
-    singleton: true,
-
     mixins: {
         observable: 'Ext.util.Observable'
     },
 
-    constructor : function (config) {
+    singleton: true,
+
+    constructor: function(config) {
         var me = this;
 
         me.mixins.observable.constructor.call(me, config);
 
-        me.addEvents({
-            companyStatusbarUpdate: true,
-            employeeContextmenuInsertclick: true,
-            employeeContextmenuEditclick: true,
-            employeeContextmenuDeleteclick: true
-        });
-
-        me.callParent(arguments);
+        /**
+         * List of events this message bus may fire
+         * Just for the purpose of documentation
+         * This not a registration of events
+         */
+        me.addEvents(
+            'companyStatusbarUpdate'
+        );
     }
 });

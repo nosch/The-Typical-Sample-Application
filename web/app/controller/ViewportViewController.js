@@ -9,7 +9,19 @@
 Ext.define('Company.controller.ViewportViewController', {
     extend: 'Deft.mvc.ViewController',
 
+    requires: [
+        'Company.service.MessageBus'
+    ],
+
     mixins: [
         'Deft.mixin.Injectable'
-    ]
+    ],
+
+    messageBus: null,
+
+    init: function() {
+        var me = this;
+
+        me.messageBus = Company.service.MessageBus;
+    }
 });

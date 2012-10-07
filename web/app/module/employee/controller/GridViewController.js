@@ -9,18 +9,16 @@
 Ext.define('Employee.controller.GridViewController', {
     extend: 'Deft.mvc.ViewController',
 
+    requires: [
+        'Employee.service.MessageBus'
+    ],
+
     mixins: [
         'Deft.mixin.Injectable'
     ],
 
-    inject: {
-        messageBus: 'messageBus',
-        employeeStore: 'employeeStore'
-    },
-
     config: {
-        contextMenu: null,
-        employeeStore: null
+        selectionModel: null
     },
 
     control: {
@@ -34,16 +32,20 @@ Ext.define('Employee.controller.GridViewController', {
     init: function() {
         var me = this;
 
+        me.setSelectionModel(me.getView().getSelectionModel());
+
+        me.messageBus = Employee.service.MessageBus;
+
         me.messageBus.on({
-            employeeContextmenuInsertclick: {
+            contextmenuInsertclick: {
                 fn: me.insertItem,
                 scope: me
             },
-            employeeContextmenuEditclick: {
+            contextmenuEditclick: {
                 fn: me.editItem,
                 scope: me
             },
-            employeeContextmenuDeleteclick: {
+            contextmenuDeleteclick: {
                 fn: me.deleteItem,
                 scope: me
             }
@@ -56,42 +58,53 @@ Ext.define('Employee.controller.GridViewController', {
 
         event.stopEvent();
 
-        view.getContextMenu().setRecord(record);
         view.getContextMenu().showAt(event.getXY());
     },
 
     insertItem: function() {
         var me = this;
 
-        me.messageBus.fireEvent(
-            'companyStatusbarUpdate',
-            'Action: New employee added'
-        );
+        /**
+         * @todo (1) Implement insert procedure
+         *       (2) If insert was successfull, fire event (store proxy listener)
+         */
+
+        var eventArgs = {
+            message: 'Action: New employee added'
+        };
+
+        me.messageBus.fireEvent('createEmployee', eventArgs);
     },
 
-    editItem: function(record) {
+    editItem: function() {
         var me = this;
+        var record = me.getSelectionModel().getLastSelected();
 
-        me.messageBus.fireEvent(
-            'companyStatusbarUpdate',
-            Ext.String.format(
-                'Action: Employee #{0} edited',
-                record.data.id
-            )
-        );
+        /**
+         * @todo (1) Implement edit procedure
+         *       (2) If edit was successfull, fire event (store proxy listener)
+         */
+
+        var eventArgs = {
+            message: Ext.String.format('Action: Employee #{0} edited', record.data.id)
+        };
+
+        me.messageBus.fireEvent('updateEmployee', eventArgs);
     },
 
-    deleteItem: function(record) {
+    deleteItem: function() {
         var me = this;
+        var view = me.getView();
+        var record = me.getSelectionModel().getLastSelected();
 
-        me.getEmployeeStore().remove(record);
+        view.getStore().remove(record);
 
-        me.messageBus.fireEvent(
-            'companyStatusbarUpdate',
-            Ext.String.format(
-                'Action: Employee #{0} deleted',
-                record.data.id
-            )
-        );
+        /** @todo If remove was successfull, fire event (store proxy listener) */
+
+        var eventArgs = {
+            message: Ext.String.format('Action: Employee #{0} deleted', record.data.id)
+        };
+
+        me.messageBus.fireEvent('deleteEmployee', eventArgs);
     }
 });
