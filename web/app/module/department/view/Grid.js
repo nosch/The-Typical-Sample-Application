@@ -24,6 +24,8 @@ Ext.define('Department.view.Grid', {
 
     title: 'Departments',
 
+    border: 0,
+
     columns: {
         defaults: {
             flex: 1

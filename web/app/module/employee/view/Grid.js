@@ -36,6 +36,8 @@ Ext.define('Employee.view.Grid', {
 
     title: 'Employees',
 
+    border: 0,
+
     columns: {
         defaults: {
             flex: 0.5
