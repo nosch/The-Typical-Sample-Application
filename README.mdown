@@ -1,4 +1,4 @@
-#The Typical sample Application
+#The Typical Sample Application
 ## A web application build on Ext JS + Deft JS + Silex
 
 ###What?
