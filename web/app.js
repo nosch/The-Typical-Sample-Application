@@ -17,18 +17,36 @@ Ext.Loader.require([
 ]);
 
 Ext.application({
+    require: [
+        'Company.service.MessageBus'
+    ],
+
     name: 'Company',
 
     appFolder: 'app',
 
     autoCreateViewport: true,
 
+    messageBus: null,
+
+    defaultModule: {
+        module: 'employee'
+    },
+
     init: function() {
         var me = this;
+
+        me.messageBus = Company.service.MessageBus;
 
         Deft.Injector.configure({
             employeeStore: 'Employee.store.Store',
             departmentStore: 'Department.store.Store'
         });
+    },
+
+    launch: function() {
+        var me = this;
+
+        me.messageBus.fireEvent('companyModuleChange', me.defaultModule);
     }
 });

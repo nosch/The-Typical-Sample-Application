@@ -13,7 +13,8 @@ Ext.define('Company.view.Viewport', {
         'Ext.layout.container.Border',
         'Company.view.Toolbar',
         'Company.view.Statusbar',
-        'Employee.view.Grid'
+        'Employee.view.Grid',
+        'Department.view.Grid'
     ],
 
     mixins: [
@@ -62,12 +63,7 @@ Ext.define('Company.view.Viewport', {
                 region: 'center',
                 layout: 'fit',
                 border: 1,
-                margins: '0 1 1 0',
-                items: [{
-                    xtype: 'employee.grid',
-                    itemId: 'employeeGrid',
-                    border: 0
-                }]
+                margins: '0 1 1 0'
             }, {
                 xtype: 'panel',
                 itemId: 'southPanel',

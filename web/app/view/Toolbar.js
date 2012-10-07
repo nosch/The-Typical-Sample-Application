@@ -30,26 +30,21 @@ Ext.define( 'Company.view.Toolbar', {
                 xtype: 'button',
                 itemId: 'dashboardButton',
                 text: 'Dashboard',
-                href: '#dashboard',
-                hrefTarget: '_self'
+                module: 'dashboard'
             }, {
                 xtype: 'button',
                 itemId: 'employeeButton',
                 text: 'Employees',
-                href: '#employee',
-                hrefTarget: '_self'
+                module: 'employee'
             }, {
                 xtype: 'button',
-                itemId: 'partnerButton',
-                text: 'Partners',
-                href: '#partner',
-                hrefTarget: '_self'
+                itemId: 'departmentButton',
+                text: 'Departments',
+                module: 'department'
             }, {
                 xtype: 'button',
                 itemId: 'helpButton',
-                text: 'Help',
-                href: '#help',
-                hrefTarget: '_self'
+                text: 'Help'
             }, {
                 xtype: 'tbfill'
             }, {

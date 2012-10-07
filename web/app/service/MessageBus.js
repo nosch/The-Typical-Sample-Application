@@ -23,6 +23,7 @@ Ext.define('Company.service.MessageBus', {
          * This not a registration of events
          */
         me.addEvents(
+            'companyModuleChange',
             'companyStatusbarUpdate'
         );
     }

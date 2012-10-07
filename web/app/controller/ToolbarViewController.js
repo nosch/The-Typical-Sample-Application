@@ -17,11 +17,65 @@ Ext.define('Company.controller.ToolbarViewController', {
         'Deft.mixin.Injectable'
     ],
 
+    control: {
+        dashboardButton: {
+            click: 'changeModule'
+        },
+        employeeButton: {
+            click: 'changeModule'
+        },
+        departmentButton: {
+            click: 'changeModule'
+        },
+        helpButton: {
+            click: 'showHelpScreen'
+        },
+        loginButton: {
+            click: 'showLoginScreen'
+        }
+    },
+
     messageBus: null,
 
     init: function() {
         var me = this;
 
         me.messageBus = Company.service.MessageBus;
+    },
+
+    changeModule: function(button) {
+        var me = this;
+
+        if ('dashboard' === button.module) {
+            me._showInfoMessage();
+            return;
+        }
+
+        var eventArgs = {
+            module: button.module
+        };
+
+        me.messageBus.fireEvent('companyModuleChange', eventArgs);
+    },
+
+    showHelpScreen: function(button) {
+        var me = this;
+
+        me._showInfoMessage();
+    },
+
+    showLoginScreen: function(button) {
+        var me = this;
+
+        me._showInfoMessage();
+    },
+
+    _showInfoMessage: function() {
+        Ext.MessageBox.show({
+            title: 'Info',
+            msg: 'Not implemented yet.',
+            icon: Ext.MessageBox.INFO,
+            buttons: Ext.Msg.OK
+        });
     }
 });
