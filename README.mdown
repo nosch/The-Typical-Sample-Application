@@ -2,7 +2,7 @@
 ## A web application build on Ext JS + Deft JS + Silex
 
 ###What?
-Developing a sample "Company Web Application" that provides CRUD actions for employee data, departments and partners. The frontend is made with Ext JS (and the help of DeftJs). The backend is a RESTful API based on Silex, a PHP micro framework.
+Developing a sample "Company Web Application" that provides CRUD actions for employee data, departments and partners. The frontend is made with Ext JS (and the help of DeftJS). The backend is a RESTful API based on Silex, a PHP micro framework.
 
 ###Why?
 Just for the purpose of learning and maybe finding best practices.
