@@ -17,6 +17,10 @@ Ext.define('Company.controller.ToolbarViewController', {
         'Deft.mixin.Injectable'
     ],
 
+    inject: [
+        'messageBus'
+    ],
+
     control: {
         dashboardButton: {
             click: 'changeModule'
@@ -39,8 +43,6 @@ Ext.define('Company.controller.ToolbarViewController', {
 
     init: function() {
         var me = this;
-
-        me.messageBus = Company.service.MessageBus;
     },
 
     changeModule: function(button) {

@@ -17,6 +17,10 @@ Ext.define('Company.controller.StatusbarViewController', {
         'Deft.mixin.Injectable'
     ],
 
+    inject: [
+        'messageBus'
+    ],
+
     control: {
         statusField: true,
         aboutButton: {
@@ -28,8 +32,6 @@ Ext.define('Company.controller.StatusbarViewController', {
 
     init: function() {
         var me = this;
-
-        me.messageBus = Company.service.MessageBus;
 
         me.messageBus.on({
             companyStatusbarUpdate: {

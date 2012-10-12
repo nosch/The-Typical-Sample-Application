@@ -18,7 +18,7 @@ Ext.Loader.require([
 
 Ext.application({
     require: [
-        'Company.service.MessageBus'
+
     ],
 
     name: 'Company',
@@ -39,6 +39,7 @@ Ext.application({
         me.messageBus = Company.service.MessageBus;
 
         Deft.Injector.configure({
+            messageBus: 'Company.service.MessageBus',
             employeeStore: 'Employee.store.Store',
             departmentStore: 'Department.store.Store'
         });

@@ -17,12 +17,14 @@ Ext.define('Company.controller.CenterpanelViewController', {
         'Deft.mixin.Injectable'
     ],
 
+    inject: [
+        'messageBus'
+    ],
+
     messageBus: null,
 
     init: function() {
         var me = this;
-
-        me.messageBus = Company.service.MessageBus;
 
         me.messageBus.on({
             companyModuleChange: {
