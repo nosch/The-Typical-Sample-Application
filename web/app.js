@@ -23,12 +23,6 @@ Ext.application({
 
     autoCreateViewport: true,
 
-    messageBus: null,
-
-    defaultModule: {
-        module: 'employee'
-    },
-
     init: function() {
         var me = this;
 
