@@ -17,5 +17,7 @@ Ext.define( 'Company.view.Centerpanel', {
 
     xtype: 'company.centerpanel',
 
-    layout: 'fit'
+    layout: 'fit',
+
+    html: '<div style="text-align: center;padding: 20px;"><h2>Welcome to Company Application.</h2></div>'
 });
