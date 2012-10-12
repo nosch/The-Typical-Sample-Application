@@ -13,6 +13,10 @@ Ext.define('Employee.controller.GridViewController', {
         'Employee.service.MessageBus'
     ],
 
+    mixins: [
+        'Deft.mixin.Injectable'
+    ],
+
     config: {
         selectionModel: null
     },
