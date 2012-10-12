@@ -17,10 +17,6 @@ Ext.Loader.require([
 ]);
 
 Ext.application({
-    require: [
-
-    ],
-
     name: 'Company',
 
     appFolder: 'app',
@@ -36,18 +32,10 @@ Ext.application({
     init: function() {
         var me = this;
 
-        me.messageBus = Company.service.MessageBus;
-
         Deft.Injector.configure({
             messageBus: 'Company.service.MessageBus',
             employeeStore: 'Employee.store.Store',
             departmentStore: 'Department.store.Store'
         });
-    },
-
-    launch: function() {
-        var me = this;
-
-        me.messageBus.fireEvent('companyModuleChange', me.defaultModule);
     }
 });
