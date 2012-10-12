@@ -18,7 +18,10 @@ Ext.define('Company.controller.StatusbarViewController', {
     ],
 
     control: {
-        statusField: true
+        statusField: true,
+        aboutButton: {
+            click: 'showAboutInfo'
+        }
     },
 
     messageBus: null,
@@ -41,7 +44,7 @@ Ext.define('Company.controller.StatusbarViewController', {
         var statusField = me.getStatusField();
 
         statusField.setText(args.message);
-    }
+    },
 
     /* Update status message with record.data
     updateStatusMessage: function(args) {
@@ -56,4 +59,13 @@ Ext.define('Company.controller.StatusbarViewController', {
     args.template = Ext.create('Ext.XTemplate', 'Status: Employee #{employeeId} deleted')
     args.record = selected record from grid
     */
+
+    showAboutInfo: function (button) {
+        Ext.MessageBox.show({
+            title: 'About',
+            msg: '<p style="text-align: center;">Company Application </br> Version 0.1</p>',
+            icon: Ext.MessageBox.INFO,
+            buttons: Ext.Msg.OK
+        });
+    }
 });

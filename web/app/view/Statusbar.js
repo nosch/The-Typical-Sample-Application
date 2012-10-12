@@ -29,7 +29,8 @@ Ext.define( 'Company.view.Statusbar', {
                 xtype: 'tbfill'
             }, {
                 xtype: 'button',
-                text: 'Version'
+                itemId: 'aboutButton',
+                text: 'About'
             }, {
                 xtype: 'tbseparator'
             }, {
