@@ -12,6 +12,7 @@ Ext.define('Company.view.Viewport', {
     requires: [
         'Ext.layout.container.Border',
         'Company.view.Toolbar',
+        'Company.view.Centerpanel',
         'Company.view.Statusbar',
         'Employee.view.Grid',
         'Department.view.Grid'
@@ -58,10 +59,9 @@ Ext.define('Company.view.Viewport', {
                 border: 1,
                 margins: '0 1 1 1'
             }, {
-                xtype: 'panel',
+                xtype: 'company.centerpanel',
                 itemId: 'centerPanel',
                 region: 'center',
-                layout: 'fit',
                 border: 1,
                 margins: '0 1 1 0'
             }, {

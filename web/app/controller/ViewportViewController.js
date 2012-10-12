@@ -17,45 +17,11 @@ Ext.define('Company.controller.ViewportViewController', {
         'Deft.mixin.Injectable'
     ],
 
-    control: {
-        centerPanel: true
-    },
-
     messageBus: null,
 
     init: function() {
         var me = this;
 
         me.messageBus = Company.service.MessageBus;
-
-        me.messageBus.on({
-            companyModuleChange: {
-                fn: me.changeModule,
-                scope: me
-            }
-        });
-    },
-
-    changeModule: function(args) {
-        var me = this;
-        var view = me.getView();
-        var centerPanel = me.getCenterPanel();
-        var activeModule = centerPanel.child();
-
-        if (activeModule) {
-            activeModule.destroy();
-        }
-
-        centerPanel.add({
-            xtype: args.module + '.grid'
-        });
-
-        view.doLayout();
-
-        var eventArgs = {
-            message: Ext.String.format('Active module: {0}', Ext.String.capitalize(args.module))
-        };
-
-        me.messageBus.fireEvent('companyStatusbarUpdate', eventArgs);
     }
 });
