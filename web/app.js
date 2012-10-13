@@ -4,10 +4,16 @@
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
  */
 
-Ext.Loader.setPath({
-    'Deft': './lib/DeftJs/src/js/Deft',
-    'Employee': './app/module/employee',
-    'Department': './app/module/department'
+Ext.Loader.setConfig({
+    modules: [
+        'department',
+        'employee'
+    ],
+    paths: {
+        'Deft': './lib/DeftJs/src/js/Deft',
+        'Department': './app/module/department',
+        'Employee': './app/module/employee'
+    }
 });
 
 Ext.Loader.require([
@@ -17,14 +23,23 @@ Ext.Loader.require([
 ]);
 
 Ext.application({
+    requires: [
+        'Company.service.ModuleRegistry'
+    ],
+
     name: 'Company',
 
-    appFolder: 'app',
+    moduleRegistry: null,
 
     autoCreateViewport: true,
 
     init: function() {
         var me = this;
+
+        me.moduleRegistry = Company.service.ModuleRegistry.getRegistry();
+
+        // nosch: debug output
+        console.debug(me.moduleRegistry);
 
         Deft.Injector.configure({
             messageBus: 'Company.service.MessageBus',
