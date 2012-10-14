@@ -6,14 +6,26 @@
  */
 
 Ext.define('Company.service.ModuleRegistry', {
+    singleton: true,
+
     configSuffix: '.Config',
 
-    registry: {},
+    moduleConfig: {},
 
-    constructor: function(cfg) {
+    constructor: function() {
         var me = this;
 
-        Ext.Array.each(Ext.Loader.getConfig('modules'), function(module) {
+        var modules = Ext.Loader.getConfig('modules');
+
+        if (!modules || 0 === modules.length) {
+            Ext.Error.raise({
+                msg: 'No module configuration found! Please configure application modules.'
+            });
+
+            return;
+        }
+
+        Ext.Array.each(modules, function(module) {
             var configClass = Ext.String.capitalize(module) + me.configSuffix;
 
             Ext.Loader.require(
@@ -21,10 +33,15 @@ Ext.define('Company.service.ModuleRegistry', {
                 function() {
                     var configObject = Ext.create(configClass);
 
-                    Ext.apply(me.registry, configObject.getModuleConfig());
-                },
-                me
+                    Ext.apply(me.moduleConfig, configObject.getModuleConfig());
+                }
             );
         });
+    },
+
+    getModuleConfig: function() {
+        var me = this;
+
+        return me.moduleConfig;
     }
 });

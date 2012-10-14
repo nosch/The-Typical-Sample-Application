@@ -10,7 +10,9 @@ Ext.Loader.setConfig({
         'employee'
     ],
     paths: {
+        // Library namespaces
         'Deft': './lib/DeftJs/src/js/Deft',
+        // Module namespaces
         'Department': './app/module/department',
         'Employee': './app/module/employee'
     }
@@ -23,6 +25,10 @@ Ext.Loader.require([
 ]);
 
 Ext.application({
+    requires: [
+        'Company.service.ModuleRegistry'
+    ],
+
     name: 'Company',
 
     autoCreateViewport: true,
@@ -31,7 +37,9 @@ Ext.application({
         var me = this;
 
         Deft.Injector.configure({
-            moduleRegistry: 'Company.service.ModuleRegistry',
+            moduleConfig: {
+                value: Company.service.ModuleRegistry.getModuleConfig()
+            },
             messageBus: 'Company.service.MessageBus',
             employeeStore: 'Employee.store.Store',
             departmentStore: 'Department.store.Store'
