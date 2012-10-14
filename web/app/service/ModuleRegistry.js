@@ -6,8 +6,6 @@
  */
 
 Ext.define('Company.service.ModuleRegistry', {
-    singleton: true,
-
     configSuffix: '.Config',
 
     registry: {},
@@ -16,23 +14,17 @@ Ext.define('Company.service.ModuleRegistry', {
         var me = this;
 
         Ext.Array.each(Ext.Loader.getConfig('modules'), function(module) {
-            var configClass = Ext.String.capitalize(module) +  me.configSuffix;
+            var configClass = Ext.String.capitalize(module) + me.configSuffix;
 
             Ext.Loader.require(
                 configClass,
                 function() {
                     var configObject = Ext.create(configClass);
 
-                    me.registry[module] = configObject.getModuleConfig();
+                    Ext.apply(me.registry, configObject.getModuleConfig());
                 },
                 me
             );
         });
-    },
-
-    getRegistry: function() {
-        var me = this;
-
-        return me.registry;
     }
 });

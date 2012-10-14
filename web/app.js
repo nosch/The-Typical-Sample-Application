@@ -23,25 +23,15 @@ Ext.Loader.require([
 ]);
 
 Ext.application({
-    requires: [
-        'Company.service.ModuleRegistry'
-    ],
-
     name: 'Company',
-
-    moduleRegistry: null,
 
     autoCreateViewport: true,
 
     init: function() {
         var me = this;
 
-        me.moduleRegistry = Company.service.ModuleRegistry.getRegistry();
-
-        // nosch: debug output
-        console.debug(me.moduleRegistry);
-
         Deft.Injector.configure({
+            moduleRegistry: 'Company.service.ModuleRegistry',
             messageBus: 'Company.service.MessageBus',
             employeeStore: 'Employee.store.Store',
             departmentStore: 'Department.store.Store'

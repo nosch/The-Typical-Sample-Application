@@ -1,11 +1,14 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
  * @class Department.Config
+ * @extends Company.service.ModuleConfig
  *
  * Configuration class for the "Department" module
  */
 
 Ext.define('Department.Config', {
+     extend: 'Company.service.ModuleConfig',
+
     moduleConfig: {
         department: {
             title: 'Departments',
@@ -14,11 +17,5 @@ Ext.define('Department.Config', {
             xtype: 'department.grid',
             active: true
         }
-    },
-
-    getModuleConfig: function() {
-        var me = this;
-
-        return me.moduleConfig;
     }
 });

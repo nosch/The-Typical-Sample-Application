@@ -1,11 +1,14 @@
 /**
  * @author Norbert Schmidt <norbert.schmidt@mayflower.com>
  * @class Employee.Config
+ * @extends Company.service.ModuleConfig
  *
  * Configuration class for the "Employee" module
  */
 
 Ext.define('Employee.Config', {
+    extend: 'Company.service.ModuleConfig',
+
     moduleConfig: {
         employee: {
             title: 'Employees',
@@ -14,11 +17,5 @@ Ext.define('Employee.Config', {
             xtype: 'employee.grid',
             active: true
         }
-    },
-
-    getModuleConfig: function() {
-        var me = this;
-
-        return me.moduleConfig;
     }
 });
