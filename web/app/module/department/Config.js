@@ -7,7 +7,7 @@
  */
 
 Ext.define('Department.Config', {
-     extend: 'Company.service.ModuleConfig',
+    extend: 'Company.service.ModuleConfig',
 
     moduleConfig: {
         department: {
