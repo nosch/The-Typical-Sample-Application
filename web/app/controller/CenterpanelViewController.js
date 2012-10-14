@@ -18,8 +18,11 @@ Ext.define('Company.controller.CenterpanelViewController', {
     ],
 
     inject: [
+        'moduleConfig',
         'messageBus'
     ],
+
+    moduleConfig: null,
 
     messageBus: null,
 
@@ -34,18 +37,23 @@ Ext.define('Company.controller.CenterpanelViewController', {
         });
     },
 
-    changeModule: function(args) {
+    changeModule: function(module) {
         var me = this;
         var view = me.getView();
 
         view.removeAll();
 
-        view.add({
-            xtype: args.module + '.grid'
-        });
+        Ext.Loader.require(
+            me.moduleConfig[module].view,
+            function() {
+               view.add({
+                    xtype: me.moduleConfig[module].xtype
+                });
+            }
+        );
 
         var eventArgs = {
-            message: Ext.String.format('Active module: {0}', Ext.String.capitalize(args.module))
+            message: Ext.String.format('Active module: {0}', me.moduleConfig[module].title)
         };
 
         me.messageBus.fireEvent('companyStatusbarUpdate', eventArgs);

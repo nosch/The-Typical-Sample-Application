@@ -28,21 +28,6 @@ Ext.define( 'Company.view.Toolbar', {
         Ext.apply(me, {
             items: [{
                 xtype: 'button',
-                itemId: 'dashboardButton',
-                text: 'Dashboard',
-                module: 'dashboard'
-            }, {
-                xtype: 'button',
-                itemId: 'employeeButton',
-                text: 'Employees',
-                module: 'employee'
-            }, {
-                xtype: 'button',
-                itemId: 'departmentButton',
-                text: 'Departments',
-                module: 'department'
-            }, {
-                xtype: 'button',
                 itemId: 'helpButton',
                 text: 'Help'
             }, {

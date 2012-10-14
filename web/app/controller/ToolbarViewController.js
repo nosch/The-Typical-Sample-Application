@@ -18,55 +18,60 @@ Ext.define('Company.controller.ToolbarViewController', {
     ],
 
     inject: [
+        'moduleConfig',
         'messageBus'
     ],
 
     control: {
-        dashboardButton: {
-            click: 'changeModule'
-        },
-        employeeButton: {
-            click: 'changeModule'
-        },
-        departmentButton: {
-            click: 'changeModule'
-        },
         helpButton: {
-            click: 'showHelpScreen'
+            click: 'onHelpButtonClick'
         },
         loginButton: {
-            click: 'showLoginScreen'
+            click: 'onLoginButtonClick'
         }
     },
+
+    moduleConfig: null,
 
     messageBus: null,
 
     init: function() {
         var me = this;
+        var view = me.getView();
+        var position = 0;
+
+        Ext.Object.each(me.moduleConfig, function(key, value) {
+            if (!value.active) {
+                return;
+            }
+
+            view.insert(position, {
+                xtype: 'button',
+                text: value.title,
+                listeners: {
+                    click: me.onModuleButtonClick,
+                    scope: me
+                },
+                module: key
+            });
+
+            position ++;
+        });
     },
 
-    changeModule: function(button) {
+    onModuleButtonClick: function(button) {
         var me = this;
 
-        if ('dashboard' === button.module) {
-            me._showInfoMessage();
-            return;
-        }
-
-        var eventArgs = {
-            module: button.module
-        };
-
-        me.messageBus.fireEvent('companyModuleChange', eventArgs);
+        me.messageBus.fireEvent('companyModuleChange', button.module);
     },
 
-    showHelpScreen: function(button) {
+    onHelpButtonClick: function(button) {
         var me = this;
 
         me._showInfoMessage();
     },
 
-    showLoginScreen: function(button) {
+    onLoginButtonClick: function(button) {
         var me = this;
 
         me._showInfoMessage();
