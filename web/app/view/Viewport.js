@@ -13,9 +13,7 @@ Ext.define('Company.view.Viewport', {
         'Ext.layout.container.Border',
         'Company.view.Toolbar',
         'Company.view.Centerpanel',
-        'Company.view.Statusbar',
-        'Employee.view.Grid',
-        'Department.view.Grid'
+        'Company.view.Statusbar'
     ],
 
     mixins: [
