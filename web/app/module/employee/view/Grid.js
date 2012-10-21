@@ -10,6 +10,7 @@ Ext.define('Employee.view.Grid', {
     extend: 'Ext.grid.Panel',
 
     requires: [
+        'Ext.selection.RowModel',
         'Ext.grid.column.Template',
         'Ext.grid.column.Date',
         'Ext.grid.column.Boolean',
