@@ -46,7 +46,7 @@ Ext.define('Company.controller.CenterpanelViewController', {
         Ext.Loader.require(
             me.moduleConfig[module].view,
             function() {
-               view.add({
+                view.add({
                     xtype: me.moduleConfig[module].xtype
                 });
             }
