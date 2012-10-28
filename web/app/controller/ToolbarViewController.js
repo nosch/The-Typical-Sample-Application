@@ -41,28 +41,26 @@ Ext.define('Company.controller.ToolbarViewController', {
         var position = 0;
 
         Ext.Object.each(me.moduleConfig, function(key, value) {
-            if (!value.active) {
-                return;
-            }
-
             view.insert(position, {
                 xtype: 'button',
                 text: value.title,
+                tooltip: value.description,
+                tooltipType: 'title',
+                moduleName: key,
                 listeners: {
-                    click: me.onModuleButtonClick,
+                    click: me.onNavigationButtonClick,
                     scope: me
-                },
-                module: key
+                }
             });
 
             position ++;
         });
     },
 
-    onModuleButtonClick: function(button) {
+    onNavigationButtonClick: function(button) {
         var me = this;
 
-        me.messageBus.fireEvent('companyModuleChange', button.module);
+        me.messageBus.fireEvent('companyModuleChange', button.moduleName);
     },
 
     onHelpButtonClick: function(button) {

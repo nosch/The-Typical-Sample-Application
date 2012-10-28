@@ -9,10 +9,6 @@
 Ext.define('Company.controller.CenterpanelViewController', {
     extend: 'Deft.mvc.ViewController',
 
-    requires: [
-        'Company.service.MessageBus'
-    ],
-
     mixins: [
         'Deft.mixin.Injectable'
     ],
@@ -37,25 +33,25 @@ Ext.define('Company.controller.CenterpanelViewController', {
         });
     },
 
-    changeModule: function(module) {
+    changeModule: function(moduleName) {
         var me = this;
         var view = me.getView();
 
         view.removeAll();
 
         Ext.Loader.require(
-            me.moduleConfig[module].view,
+            me.moduleConfig[moduleName].requires,
             function() {
-                view.add({
-                    xtype: me.moduleConfig[module].xtype
-                });
+                if (me.moduleConfig[moduleName].injection) {
+                    Deft.Injector.configure(
+                        me.moduleConfig[moduleName].injection
+                    );
+                }
+
+                var moduleViewComponent = Ext.create(me.moduleConfig[moduleName].view);
+
+                view.add(moduleViewComponent);
             }
         );
-
-        var eventArgs = {
-            message: Ext.String.format('Active module: {0}', me.moduleConfig[module].title)
-        };
-
-        me.messageBus.fireEvent('companyStatusbarUpdate', eventArgs);
     }
 });

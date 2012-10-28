@@ -8,40 +8,45 @@
 Ext.define('Company.service.ModuleRegistry', {
     singleton: true,
 
-    configSuffix: '.Config',
-
-    moduleConfig: {},
+    registry: null,
 
     constructor: function() {
         var me = this;
+        var loaderConfig = Ext.Loader.getConfig();
+        var modulePath =  loaderConfig.paths.module;
+        var moduleNames = loaderConfig.modules;
 
-        var modules = Ext.Loader.getConfig('modules');
+        me.registry = {};
 
-        if (!modules || 0 === modules.length) {
-            Ext.Error.raise({
-                msg: 'No module configuration found! Please configure application modules.'
-            });
-
+        if (!moduleNames || 0 === moduleNames.length) {
             return;
         }
 
-        Ext.Array.each(modules, function(module) {
-            var configClass = Ext.String.capitalize(module) + me.configSuffix;
+        Ext.Array.each(moduleNames, function(moduleName) {
+            var namespace = Ext.String.capitalize(moduleName);
+            var configClass = namespace + '.Config';
+
+            Ext.Loader.setPath(namespace, modulePath + moduleName);
 
             Ext.Loader.require(
                 configClass,
                 function() {
                     var configObject = Ext.create(configClass);
+                    var moduleConfig = configObject.getConfig();
 
-                    Ext.apply(me.moduleConfig, configObject.getModuleConfig());
+                    if (true === moduleConfig.active) {
+                        me.registry[moduleName] = {};
+
+                        Ext.apply(me.registry[moduleName], moduleConfig);
+                    }
                 }
             );
         });
     },
 
-    getModuleConfig: function() {
+    getRegistry: function() {
         var me = this;
 
-        return me.moduleConfig;
+        return me.registry;
     }
 });

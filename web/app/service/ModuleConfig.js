@@ -8,7 +8,7 @@
 Ext.define('Company.service.ModuleConfig', {
     moduleConfig: null,
 
-    getModuleConfig: function() {
+    getConfig: function() {
         var me = this;
 
         return me.moduleConfig;

@@ -10,12 +10,13 @@ Ext.define('Department.Config', {
     extend: 'Company.service.ModuleConfig',
 
     moduleConfig: {
-        department: {
-            title: 'Departments',
-            description: 'Mangage the departments of your entire company.',
-            view: 'Department.view.Grid',
-            xtype: 'department.grid',
-            active: true
-        }
+        active: true,
+        title: 'Departments',
+        description: 'Mangage the departments of your entire company.',
+        view: 'Department.view.Grid',
+        xtype: 'department.grid',
+        requires: [
+            'Department.view.Grid'
+        ]
     }
 });

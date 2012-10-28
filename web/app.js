@@ -12,9 +12,9 @@ Ext.Loader.setConfig({
     paths: {
         // Library namespaces
         'Deft': './lib/DeftJs/src/js/Deft',
-        // Module namespaces
-        'Department': './app/module/department',
-        'Employee': './app/module/employee'
+        // Module namespace (module root directory)
+        'module': './app/module/'
+        // Namespace for each module is set by registry process
     }
 });
 
@@ -36,9 +36,11 @@ Ext.application({
     init: function() {
         var me = this;
 
+        var moduleRegistry = Company.service.ModuleRegistry.getRegistry();
+
         Deft.Injector.configure({
             moduleConfig: {
-                value: Company.service.ModuleRegistry.getModuleConfig()
+                value: moduleRegistry
             },
             messageBus: 'Company.service.MessageBus',
             employeeStore: 'Employee.store.Store',

@@ -10,12 +10,13 @@ Ext.define('Employee.Config', {
     extend: 'Company.service.ModuleConfig',
 
     moduleConfig: {
-        employee: {
-            title: 'Employees',
-            description: 'Mangage the employees of your entire company.',
-            view: 'Employee.view.Grid',
-            xtype: 'employee.grid',
-            active: true
-        }
+        active: true,
+        title: 'Employees',
+        description: 'Mangage the employees of your entire company.',
+        view: 'Employee.view.Grid',
+        xtype: 'employee.grid',
+        requires: [
+            'Employee.view.Grid'
+        ]
     }
 });
